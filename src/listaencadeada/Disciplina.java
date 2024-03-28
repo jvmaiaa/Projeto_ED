@@ -1,3 +1,7 @@
+package listaencadeada;
+
+import java.util.StringJoiner;
+
 public class Disciplina {
 
     private String disciplina;
@@ -29,9 +33,6 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return "Disciplina{" +
-                "disciplina='" + disciplina + '\'' +
-                ", nota=" + nota +
-                '}';
+        return "disciplina: " + disciplina + ", nota: " + nota;
     }
 }

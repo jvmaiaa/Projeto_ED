@@ -1,3 +1,5 @@
+package listasequencial;
+
 public class Aluno {
 
     private String rgm;
@@ -19,6 +21,6 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Aluno com rgm:" + rgm;
+        return "listasequencial.Aluno com rgm:" + rgm;
     }
 }

@@ -1,3 +1,5 @@
+package listasequencial;
+
 import java.util.Arrays;
 
 public class ListaSequencial<T> {

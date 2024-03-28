@@ -1,19 +1,17 @@
+import listaencadeada.Disciplina;
+import listaencadeada.ListaEncadeada;
+import listasequencial.Aluno;
+import listasequencial.ListaSequencial;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        ListaSequencial<Aluno> lista = new ListaSequencial(4);
+        ListaEncadeada lista = new ListaEncadeada<Disciplina>();
+        Disciplina disciplina = new Disciplina("Matemática", 0);
 
-        Aluno aluno1 = new Aluno ("92643");
-        lista.adicionaNoFim(aluno1);
-        Aluno aluno2 = new Aluno ("86346");
-        lista.adicionaNoFim(aluno2);
-        Aluno aluno3 = new Aluno ("53938");
-
-        System.out.println(lista.contem(aluno1));
-        System.out.println(lista.contem(aluno2));
-        System.out.println(lista.contem(aluno3));
-
+        lista.adicionaNoInicio(disciplina);
         System.out.println(lista);
+        System.out.println("Tamanho = " + lista.tamanho());
     }
 }
