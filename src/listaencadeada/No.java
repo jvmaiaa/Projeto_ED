@@ -33,8 +33,8 @@ public class No<T> {
 
     @Override
     public String toString() {
-        return "No[" +
-                "elemento=" + elemento +
-                ", proximo=" + proximo + "]";
+        StringBuilder builder = new StringBuilder();
+        builder.append("No [elemento= ").append(elemento).append(", proximo=").append(proximo).append("]");
+        return builder.toString();
     }
 }
