@@ -6,6 +6,8 @@ public class ListaEncadeada<T> {
     private No<T> ultimo;
     private int tamanho;
 
+    private final int NAO_ENCONTRADO = -1;
+
     public void adicionaNoInicioOuNoFim(T elemento){
         No<T> celula = new No<T>(elemento);
         // verifica se a lista está vazia
@@ -38,6 +40,36 @@ public class ListaEncadeada<T> {
         this.tamanho = 0;
     }
 
+    public No<T> buscaPorNo(int posicao) {
+        if (!(posicao >= 0 && posicao < this.tamanho)){
+            throw new IllegalArgumentException("Posição não existe.");
+        }
+
+        No<T> atual = this.inicio;
+        for (int i = 0; i < posicao; i++){
+            atual = atual.getProximo();
+        }
+
+        return atual;
+    }
+
+    public T buscaPorIndice(int posicao) {
+        return this.buscaPorNo(posicao).getElemento();
+    }
+
+    public int buscaPorElemento(T elemento){
+        No<T> atual = this.inicio;
+        int posicao = 0;
+
+        while (atual != null){
+            if (atual.getElemento().equals(elemento)){
+                return posicao;
+            }
+            posicao++;
+            atual = atual.getProximo();
+        }
+        return NAO_ENCONTRADO;
+    }
 
 
     public int tamanho(){
