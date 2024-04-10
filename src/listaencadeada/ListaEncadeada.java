@@ -6,7 +6,9 @@ public class ListaEncadeada<T> {
     private No<T> ultimo;
     private int tamanho;
 
-    private final int NAO_ENCONTRADO = -1;
+    private final int ELEMENTO_NAO_ENCONTRADO = -1;
+    private final String POSICAO_NAO_EXISTE = "Posição não existe.";
+    private final String LISTA_VAZIA = "Lista está vazia.";
 
     public void adicionaNoInicioOuNoFim(T elemento){
         No<T> celula = new No<T>(elemento);
@@ -26,7 +28,7 @@ public class ListaEncadeada<T> {
 
     public void limpaLista(){
         if (this.tamanho == 0){
-            return;
+            throw new RuntimeException();
         }
         No<T> atual = this.inicio;
         while (atual != null) {
@@ -42,7 +44,7 @@ public class ListaEncadeada<T> {
 
     public No<T> buscaPorNo(int posicao) {
         if (!(posicao >= 0 && posicao < this.tamanho)){
-            throw new IllegalArgumentException("Posição não existe.");
+            throw new IllegalArgumentException(POSICAO_NAO_EXISTE);
         }
 
         No<T> atual = this.inicio;
@@ -68,7 +70,62 @@ public class ListaEncadeada<T> {
             posicao++;
             atual = atual.getProximo();
         }
-        return NAO_ENCONTRADO;
+        return ELEMENTO_NAO_ENCONTRADO;
+    }
+
+    private boolean posicaoNaoExiste(int posicao){
+        return !(posicao >= 0 && posicao <= this.tamanho);
+    }
+
+    public T removeInicio(){
+        if (this.tamanho == 0){
+            throw new RuntimeException(LISTA_VAZIA);
+        }
+        T removido = this.inicio.getElemento();
+        this.inicio = this.inicio.getProximo();
+        this.tamanho--;
+
+        if(this.tamanho == 0){
+            this.inicio = null;
+            this.ultimo = null;
+        }
+        return removido;
+    }
+
+    public T removeFinal(){
+        if (this.tamanho == 0){
+            throw new RuntimeException(LISTA_VAZIA);
+        }
+        if (this.tamanho == 1){
+            return removeInicio();
+        }
+
+        No<T> penultimoNo = this.buscaPorNo(this.tamanho - 2);
+        T removido = penultimoNo.getProximo().getElemento();
+        penultimoNo.setProximo(null);
+        this.ultimo = penultimoNo;
+        this.tamanho--;
+        return removido;
+    }
+
+    public T removeMeio(int posicao) {
+        if (posicaoNaoExiste(posicao)) {
+            throw new IllegalArgumentException(POSICAO_NAO_EXISTE);
+        }
+
+        if (posicao == 0) {
+            return removeInicio();
+        }
+        if (posicao == tamanho - 1) {
+            return removeFinal();
+        }
+        No<T> noAnterior = this.buscaPorNo(posicao - 1);
+        No<T> noAtual = noAnterior.getProximo();
+        No<T> proximo = noAtual.getProximo();
+        noAnterior.setProximo(proximo);
+        noAtual.setProximo(null);
+        this.tamanho--;
+        return noAtual.getElemento();
     }
 
 
