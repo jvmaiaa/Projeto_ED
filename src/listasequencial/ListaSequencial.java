@@ -1,6 +1,7 @@
 package listasequencial;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class ListaSequencial<T> {
 
@@ -93,7 +94,6 @@ public class ListaSequencial<T> {
     public String toString() {
 
         StringBuilder s = new StringBuilder();
-
         s.append("[");
 
         // iteração até tamanho real -1 para fechar o ]

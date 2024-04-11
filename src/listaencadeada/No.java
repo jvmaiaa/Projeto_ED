@@ -34,7 +34,7 @@ public class No<T> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("No [elemento= ").append(elemento).append(", proximo=").append(proximo).append("]");
+        builder.append("Disciplinas: ").append(elemento).append("").append(proximo);
         return builder.toString();
     }
 }

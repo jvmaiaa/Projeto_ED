@@ -135,12 +135,12 @@ public class ListaEncadeada<T> {
 
     @Override
     public String toString() {
-
-        StringBuilder builder = new StringBuilder();
-        builder.append("[");
         if (this.tamanho == 0){
             return "[]";
         }
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
 
         No<T> atual = this.inicio;
         for (int i = 0; i < this.tamanho - 1; i++){
