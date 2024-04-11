@@ -5,6 +5,8 @@ import java.util.stream.Stream;
 
 public class ListaSequencial<T> {
 
+    private final int POSICAO_NAO_EXISTE = -1;
+
     private T[] alunos;
     private int tamanho;
 
@@ -35,8 +37,21 @@ public class ListaSequencial<T> {
                 return i;
             }
         }
-        return -1;
+        return POSICAO_NAO_EXISTE;
     }
+
+    public int buscaPorRgm(String rgm){
+        for (int i = 0; i < this.tamanho; i++){
+            if (this.alunos[i] instanceof Aluno){
+                Aluno aluno = (Aluno) this.alunos[i];
+                if (aluno.getRgm().equals(rgm)) {
+                    return i;
+                }
+            }
+        }
+        return POSICAO_NAO_EXISTE;
+    }
+
 
     public boolean inserirEmQualquerPosicao(int posicao, T aluno){
         if(!(posicao >= 0 && posicao < this.tamanho)){

@@ -3,6 +3,8 @@ package listasequencial;
 import listaencadeada.Disciplina;
 import listaencadeada.ListaEncadeada;
 
+import java.util.Objects;
+
 public class Aluno {
 
     private String rgm;
@@ -39,6 +41,19 @@ public class Aluno {
 //    public void adicionaDisciplina(Disciplina disciplina){
 //        this.disciplinas.adicionaNoInicioOuNoFim(disciplina);;
 //    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Aluno aluno)) return false;
+        return Objects.equals(getRgm(), aluno.getRgm());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRgm());
+    }
 
     @Override
     public String toString() {

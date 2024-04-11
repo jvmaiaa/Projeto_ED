@@ -21,7 +21,7 @@ public class Main {
         if (quantidadeDeAlunos > 60){
             throw new IllegalArgumentException("O número que você digitou excede o limite.");
         }
-
+        // insere os alunos e as disciplinas
         for (int i = 0; i < quantidadeDeAlunos; i++) {
             System.out.println("Digite um RGM para ser inserido na lista:");
             String rgm = scan.nextLine().trim();
@@ -41,12 +41,34 @@ public class Main {
                 continua = (resposta == 's') ? continua : false;
             }
         }
-
+        // mostrar todos os alunos e disciplinas
         for (int i = 0; i < alunos.tamanho(); i++){
             System.out.println(alunos.buscaPorIndice(i));
             System.out.println(alunos.buscaPorIndice(i).getDisciplinas());
         }
 
+        // busca um aluno pelo rgm
+        System.out.println("\nDigite o RGM do aluno que você deseja encontrar:");
+        String rgm = scan.nextLine();
+        Aluno alunoAuxiliar = new Aluno(rgm);
+        int indiceDoAluno = alunos.buscaPorRgm(rgm);
+        System.out.println((!(indiceDoAluno == -1))
+                ? alunos.buscaPorIndice(indiceDoAluno)
+                + "\n"
+                + alunos.buscaPorIndice(indiceDoAluno).getDisciplinas()
+                : "Não existe");
 
+        // exclui pelo RGM
+        System.out.println("\nDigite o RGM do aluno que você deseja excluir:");
+        String rgmParaRemover = scan.nextLine();
+        indiceDoAluno = alunos.buscaPorRgm(rgm);
+        System.out.println(!(indiceDoAluno == -1)
+                ? alunos.removeElementoPorIndice(indiceDoAluno)
+                : "Não existe");
+
+        for (int i = 0; i < alunos.tamanho(); i++){
+            System.out.println(alunos.buscaPorIndice(i));
+            System.out.println(alunos.buscaPorIndice(i).getDisciplinas());
+        }
     }
 }
